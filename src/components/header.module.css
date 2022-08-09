@@ -1,0 +1,10 @@
+.header {
+  background-color: var(--gray-700);
+  display: flex;
+  justify-content: center;
+  height: 12.5rem;
+}
+
+.header img {
+  width: 10rem;
+}

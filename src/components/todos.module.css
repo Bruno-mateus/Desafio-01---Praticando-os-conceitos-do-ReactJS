@@ -1,0 +1,110 @@
+.todos {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 39.875rem;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.todos>form {
+  position: absolute;
+  top: -2rem;
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.todos form textarea {
+  padding: 1rem;
+  width: 100%;
+  resize: none;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  height: 3.375rem;
+  background-color: var(--gray-500);
+  color: var(--gray-100)
+}
+
+
+
+.todos>form button {
+  height: 3.375rem;
+  width: 5.625rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  color: var(--gray-100);
+  background-color: var(--blue-400);
+  border: none;
+  cursor: pointer;
+}
+
+.todos>form button:not(disabled):hover {
+  background-color: var(--blue-200);
+  transition: background-color ease 200ms;
+
+}
+
+.todos>form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.todosList {
+  margin-top: 5.6875rem;
+  width: 100%;
+}
+
+.todosList header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--gray-100);
+}
+
+.todosList header span span {
+  background-color: var(--gray-400);
+  border-radius: 100%;
+  padding: 2px 8px;
+}
+
+.todoContent {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--gray-400);
+}
+
+
+.noneTodos {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4rem;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  color: var(--gray-300);
+  gap: 1rem;
+}
+
+.noneTodoHidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+.noneTodos img {
+  width: 3.5rem;
+}
+
+.todos button:focus,
+textarea:focus {
+  box-shadow: 0px 0px 1px 1px var(--purple-300);
+
+}
