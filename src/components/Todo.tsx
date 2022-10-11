@@ -20,7 +20,7 @@ export function Todo({ todo, onDeleteTodo, todoComplete }: TodoProps) {
     <div className={styles.todo}>
 
       <label className={styles.container} >
-        <input type="checkbox" value={todo.id} onChange={(e) => todoComplete(e)} />
+        <input type="checkbox" value={todo.id} checked={todo.isComplete} onChange={(e) => todoComplete(e)} />
         <span className={styles.checkmark}><Check /></span>
         <p>{todo.content}</p>
       </label>

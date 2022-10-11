@@ -13,10 +13,26 @@ interface ITodo {
 
 export function Todos() {
 
+  const dbTodo = localStorage.getItem('itens')
+
   const [getTodo, setGetTodo] = useState<ITodo>()
-  const [todos, setTodos] = useState<ITodo[]>([])
-  const [todosComplete, setTodosComplete] = useState<ITodo[]>([])
+  const [todos, setTodos] = useState<ITodo[]>(()=>{
+    
+    if(dbTodo != null) return [...JSON.parse(dbTodo)]
+
+    return []
+  })
+  const [todosComplete, setTodosComplete] = useState<ITodo[]>(
+    ()=>{
+    if(todos.length>=0){
+      const tasksCompleted = todos.filter(task=>task.isComplete === true)
+      return tasksCompleted
+    }
+    return []
+    }
+  )
   const [textAreaValue, setTextAreaValue] = useState('')
+  
   function handleInvalidTodo(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Campo obrigatório')
   }
@@ -30,8 +46,8 @@ export function Todos() {
       content: event.target.value,
       isComplete: false
     })
-
-
+    
+    ;
 
   }
 
@@ -39,8 +55,8 @@ export function Todos() {
     event.preventDefault()
     //@ts-ignore
     setTodos([...todos, getTodo])
-
-
+   
+    localStorage.setItem('itens', JSON.stringify([...todos, getTodo]))
     setTextAreaValue('')
   }
 
@@ -50,10 +66,12 @@ export function Todos() {
     const todoWithoutDeleteOne = todos.filter(todos => todos.id !== todo.id)
     console.log(todoWithoutDeleteOne)
     setTodos([...todoWithoutDeleteOne])
+    localStorage.setItem('itens', JSON.stringify([...todoWithoutDeleteOne]))
 
     const completedTodosDeleted = todoWithoutDeleteOne.filter(todo => todo.isComplete === true)
 
     setTodosComplete([...completedTodosDeleted])
+   
 
   }
 
@@ -65,7 +83,8 @@ export function Todos() {
       if (todo.id === event.target.value) todo.isComplete = event.target.checked
       return todo
     })
-
+    setTodos([...checkedTodos])
+    localStorage.setItem('itens', JSON.stringify([...checkedTodos]))
     const completedTodos = checkedTodos.filter(todo => todo.isComplete === true)
 
     setTodosComplete([...completedTodos])
